@@ -4,9 +4,9 @@ import random
 import shutil
 
 
-fatherFolder = r'G:\RockGlacier\India\Himachal'
+fatherFolder = r'G:\RockGlacier\China-Nepal'
 index_path = os.path.join(fatherFolder, r'VOC\Index')
-dataList = os.listdir(r'G:\RockGlacier\India\Himachal\QGIS\Google')
+dataList = os.listdir(r'G:\RockGlacier\China-Nepal\QGIS\Bing')
 if os.path.exists(index_path):
     shutil.rmtree(index_path)
 os.mkdir(index_path)
@@ -28,7 +28,7 @@ os.mkdir(eval_path)
 
 random.shuffle(dataList)
 dataCount = len(dataList)
-trainRate = 0
+trainRate = 0.8
 valRate = 1 - trainRate
 with open(os.path.join(fatherFolder, r'VOC\Index\trainval.txt'), 'w') as trainvalf:
     for i in range(dataCount):

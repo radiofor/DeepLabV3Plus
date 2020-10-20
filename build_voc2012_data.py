@@ -55,30 +55,33 @@ import os.path
 import sys
 import build_data
 import tensorflow as tf
-import shutil
 
 
 FLAGS = tf.app.flags.FLAGS
 
-fatherFolder = r'G:\ResearchArea\Nepal\VOC3'
-os.mkdir(os.path.join(fatherFolder, r'tfRecord'))
+img_dir = r'G:\RockGlacier\China-Nepal\QGIS\Bing'
+lbl_dir = r'G:\RockGlacier\China-Nepal\QGIS\Label'
+idx_dir = r''
+tfr_dir = r''
+if not os.path.exists(tfr_dir):
+    os.mkdir(tfr_dir)
 tf.app.flags.DEFINE_string('image_folder',
-                           os.path.join(fatherFolder, r'JPEGImages'),
+                           img_dir,
                            'Folder containing images.')
 
 tf.app.flags.DEFINE_string(
     'semantic_segmentation_folder',
-    os.path.join(fatherFolder, r'SegmentationClassRaw'),
+    lbl_dir,
     'Folder containing semantic segmentation annotations.')
 
 tf.app.flags.DEFINE_string(
     'list_folder',
-    os.path.join(fatherFolder, r'Index'),
+    idx_dir,
     'Folder containing lists for training and validation')
 
 tf.app.flags.DEFINE_string(
     'output_dir',
-    os.path.join(fatherFolder, r'tfRecord'),
+    tfr_dir,
     'Path to save converted SSTable of TensorFlow examples.')
 
 _NUM_SHARDS = 4
