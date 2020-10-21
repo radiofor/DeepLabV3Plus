@@ -61,8 +61,9 @@ FLAGS = tf.app.flags.FLAGS
 
 img_dir = r'G:\RockGlacier\China-Nepal\QGIS\Bing'
 lbl_dir = r'G:\RockGlacier\China-Nepal\QGIS\Label'
-idx_dir = r''
-tfr_dir = r''
+voc_dir = r'G:\RockGlacier\China-Nepal\VOC'
+idx_dir = os.path.join(voc_dir, 'Index')
+tfr_dir = os.path.join(voc_dir, 'tfRecord')
 if not os.path.exists(tfr_dir):
     os.mkdir(tfr_dir)
 tf.app.flags.DEFINE_string('image_folder',
