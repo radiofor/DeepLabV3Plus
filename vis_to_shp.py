@@ -10,8 +10,8 @@ from shapefile import Management as gatl_shpman
 from shapefile import Geoprocessing as gatl_shpgpr
 
 
-wf_dir = r'G:\ResearchArea\Nepal\QGIS\WorldFile'
-voc_dir = r'G:\ResearchArea\Nepal\VOC_L'
+wf_dir = r'G:\RockGlacier\India\Himachal\QGIS\WorldFile'
+voc_dir = r'G:\RockGlacier\India\Himachal\VOC'
 ds_name = 'val'
 index_dir = os.path.join(voc_dir, 'Index')
 index_path = os.path.join(index_dir, ds_name + '.txt')
