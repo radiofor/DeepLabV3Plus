@@ -10,18 +10,20 @@ from shapefile import Management as gatl_shpman
 from shapefile import Geoprocessing as gatl_shpgpr
 
 
-wf_dir = r'G:\RockGlacier\India\Himachal\QGIS\WorldFile'
-voc_dir = r'G:\RockGlacier\India\Himachal\VOC'
+wf_dir = r'G:\RockGlacier\Himalaya\QGIS\WorldFile'
+voc_dir = r'G:\RockGlacier\Himalaya\VOC'
 ds_name = 'val'
 index_dir = os.path.join(voc_dir, 'Index')
 index_path = os.path.join(index_dir, ds_name + '.txt')
 vis_dir = os.path.join(voc_dir, 'vis_log', ds_name)
 segm_dir = os.path.join(voc_dir, 'segm_' + ds_name)
+segm_img_dir = os.path.join(segm_dir, 'img')
 segm_gtif_dir = os.path.join(segm_dir, 'gtif')
 segm_shp_dir = os.path.join(segm_dir, 'shp')
 if os.path.exists(segm_dir):
     shutil.rmtree(segm_dir)
 os.mkdir(segm_dir)
+os.mkdir(segm_img_dir)
 os.mkdir(segm_gtif_dir)
 os.mkdir(segm_shp_dir)
 segm_shp_path = os.path.join(segm_dir, 'segm_' + ds_name + '.shp')
@@ -39,17 +41,13 @@ for fname in os.listdir(vis_dir):
     idx, cls = mname.rsplit('_', 1)
     if cls == 'prediction':
         img_arr = io.imread(file_path)
-        img_size = [x for x in img_arr.shape]
-        zeros_arr = np.zeros(img_size, np.uint8)
-        if (img_arr == zeros_arr).all():
-            os.remove(file_path)
-        else:
+        # img_size = [x for x in img_arr.shape]
+        # zeros_arr = np.zeros(img_size, np.uint8)
+        if 128 in img_arr:
             idx = int(idx)
-            os.rename(file_path, os.path.join(vis_dir, index[idx] + suffix))
-    elif cls == 'image':
-        os.remove(file_path)
+            shutil.copyfile(file_path, os.path.join(segm_img_dir, index[idx] + suffix))
 
-gatl_gtifman.create_by_image_and_worldfile(vis_dir, wf_dir, '.png', '.jpw', 'epsg:3857', segm_gtif_dir)
+gatl_gtifman.create_by_image_and_worldfile(segm_img_dir, wf_dir, '.png', '.jgw', 'epsg:3857', segm_gtif_dir)
 gatl_gtifman.set_nodata_value(segm_gtif_dir, 0)
 gatl_gtifman.convert_to_shapefile(segm_gtif_dir, [1], segm_shp_dir)
 gatl_shpman.merge(segm_shp_dir, segm_shp_path)

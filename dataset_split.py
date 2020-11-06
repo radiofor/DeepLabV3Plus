@@ -4,9 +4,9 @@ import random
 import shutil
 
 
-fatherFolder = r'G:\RockGlacier\China-Nepal'
+fatherFolder = r'G:\RockGlacier\Nyenchenthanglha'
 index_path = os.path.join(fatherFolder, r'VOC\Index')
-dataList = os.listdir(r'G:\RockGlacier\China-Nepal\QGIS\Bing')
+dataList = os.listdir(r'G:\RockGlacier\Nyenchenthanglha\GaoFen-1\Label')
 if os.path.exists(index_path):
     shutil.rmtree(index_path)
 os.mkdir(index_path)

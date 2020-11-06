@@ -59,11 +59,11 @@ import tensorflow as tf
 
 FLAGS = tf.app.flags.FLAGS
 
-img_dir = r'G:\RockGlacier\China-Nepal\QGIS\Bing'
-lbl_dir = r'G:\RockGlacier\China-Nepal\QGIS\Label'
-voc_dir = r'G:\RockGlacier\China-Nepal\VOC'
+img_dir = r'G:\RockGlacier\Himalaya\QGIS\Google\4'
+lbl_dir = r'G:\RockGlacier\Himalaya\VOC\Label'
+voc_dir = r'G:\RockGlacier\Himalaya\VOC'
 idx_dir = os.path.join(voc_dir, 'Index')
-tfr_dir = os.path.join(voc_dir, 'tfRecord')
+tfr_dir = os.path.join(voc_dir, 'tfRecord', '4')
 if not os.path.exists(tfr_dir):
     os.mkdir(tfr_dir)
 tf.app.flags.DEFINE_string('image_folder',
